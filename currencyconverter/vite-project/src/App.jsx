@@ -10,7 +10,7 @@ function App() {
     const [to, setTo] = useState('inr');
     const [convertAmount, setConvertAmount] = useState(0);
 
-    const currencyInfo = useCurrencyInfo(from);
+    const { data: currencyInfo, loading, error } = useCurrencyInfo(from);
 
     const options = currencyInfo ? Object.keys(currencyInfo) : [];
 
@@ -26,6 +26,14 @@ function App() {
             setConvertAmount(count * currencyInfo[to]);
         }
     };
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
 
     return (
         <div
@@ -57,6 +65,7 @@ function App() {
                                 type="button"
                                 className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 border-2 border-white rounded-md bg-blue-600 text-white px-2 py-0.5"
                                 onClick={swap}
+                                aria-label="Swap currencies"
                             >
                                 Swap
                             </button>
@@ -68,7 +77,7 @@ function App() {
                                 onCurrencyChange={(currency) => setTo(currency)}
                                 currencyOptions={options}
                                 selectCurrency={to}
-                                amountDisabled={true}  // Disable amount input for "To" field
+                                amountDisabled={true}
                             />
                         </div>
                         <button type="submit" className="w-full bg-blue-600 text-white px-4 py-3 rounded-lg">
@@ -82,3 +91,4 @@ function App() {
 }
 
 export default App;
+
