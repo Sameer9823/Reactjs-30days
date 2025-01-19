@@ -1,19 +1,21 @@
 import { useState } from 'react';
-import {InputBox} from './components';
-import useCurrencyInfo from './hooks/useCurrencyinfo';
+import { InputBox } from './components/input.jsx';
+
 
 import './App.css';
+import useCurrencyInfo from './hooks/useCurrencyinfo';
 
 function App() {
-    const [count, setCount] = useState(0);
-    const [from, setFrom] = useState('usd');
-    const [to, setTo] = useState('inr');
-    const [convertAmount, setConvertAmount] = useState(0);
+    const [count, setCount] = useState(0); // Amount to convert
+    const [from, setFrom] = useState('USD'); // Base currency
+    const [to, setTo] = useState('INR'); // Target currency
+    const [convertAmount, setConvertAmount] = useState(0); // Converted amount
 
-    const { data: currencyInfo, loading, error } = useCurrencyInfo(from);
+    const { data: currencyInfo } = useCurrencyInfo(from); // Fetch currency rates using the custom hook
 
-    const options = currencyInfo ? Object.keys(currencyInfo) : [];
+    const options = currencyInfo ? Object.keys(currencyInfo) : ['USD', 'INR', 'EUR']; // Default options if data is not yet available
 
+    // Swap currencies
     const swap = () => {
         setFrom(to);
         setTo(from);
@@ -21,19 +23,12 @@ function App() {
         setConvertAmount(count);
     };
 
+    // Convert currency based on selected rate
     const convert = () => {
         if (currencyInfo && currencyInfo[to]) {
             setConvertAmount(count * currencyInfo[to]);
         }
     };
-
-    if (loading) {
-        return <div>Loading...</div>;
-    }
-
-    if (error) {
-        return <div>Error: {error}</div>;
-    }
 
     return (
         <div
@@ -50,6 +45,7 @@ function App() {
                             convert();
                         }}
                     >
+                        {/* From Currency Input */}
                         <div className="w-full mb-1">
                             <InputBox
                                 label="From"
@@ -60,6 +56,8 @@ function App() {
                                 onAmountChange={(count) => setCount(count)}
                             />
                         </div>
+
+                        {/* Swap Button */}
                         <div className="relative w-full h-0.5">
                             <button
                                 type="button"
@@ -70,6 +68,8 @@ function App() {
                                 Swap
                             </button>
                         </div>
+
+                        {/* To Currency Input */}
                         <div className="w-full mt-1 mb-4">
                             <InputBox
                                 label="To"
@@ -80,7 +80,12 @@ function App() {
                                 amountDisabled={true}
                             />
                         </div>
-                        <button type="submit" className="w-full bg-blue-600 text-white px-4 py-3 rounded-lg">
+
+                        {/* Convert Button */}
+                        <button
+                            type="submit"
+                            className="w-full bg-blue-600 text-white px-4 py-3 rounded-lg"
+                        >
                             Convert {from.toUpperCase()} to {to.toUpperCase()}
                         </button>
                     </form>
@@ -91,4 +96,3 @@ function App() {
 }
 
 export default App;
-

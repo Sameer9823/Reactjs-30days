@@ -9,8 +9,8 @@ export default function Footer() {
                     <div className="mb-6 md:mb-0">
                         <Link to="/" className="flex items-center">
                             <img
-                                src="https://alexharkness.com/wp-content/uploads/2020/06/logo-2.png"
-                                className="mr-3 h-16"
+                                src="https://th.bing.com/th/id/OIP.2h3oKrsc5aC1eLEjW--qXgHaHa?w=172&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+                                className="mr-3 h-24"
                                 alt="Logo"
                             />
                         </Link>
@@ -34,16 +34,7 @@ export default function Footer() {
                         <div>
                             <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase">Follow us</h2>
                             <ul className="text-gray-500 font-medium">
-                                <li className="mb-4">
-                                    <a
-                                        href="https://github.com/hiteshchoudhary"
-                                        className="hover:underline"
-                                        target="_blank"
-                                        rel="noreferrer"
-                                    >
-                                        Github
-                                    </a>
-                                </li>
+                                
                                 <li>
                                     <Link to="/" className="hover:underline">
                                         Discord
@@ -51,21 +42,7 @@ export default function Footer() {
                                 </li>
                             </ul>
                         </div>
-                        <div>
-                            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase">Legal</h2>
-                            <ul className="text-gray-500 font-medium">
-                                <li className="mb-4">
-                                    <Link to="#" className="hover:underline">
-                                        Privacy Policy
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link to="#" className="hover:underline">
-                                        Terms &amp; Conditions
-                                    </Link>
-                                </li>
-                            </ul>
-                        </div>
+                        
                     </div>
                 </div>
                 <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
