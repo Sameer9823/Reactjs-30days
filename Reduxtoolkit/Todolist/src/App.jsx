@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-      <h1 className='text-3xl font-bold'>TodoApp</h1>
+      <h1 className='text-3xl font-bold'>TodoApps</h1>
       <Addtodo/>
       <Todos/>
     </>
