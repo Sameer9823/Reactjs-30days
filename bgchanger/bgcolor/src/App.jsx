@@ -1,8 +1,9 @@
 import { useState } from 'react'
+import { NoiseDemo } from './Cursor'
 
 
 function App() {
-  const [color, setColor] = useState('olive')
+  const [color, setColor] = useState('black')
 
   return (
     <>
@@ -83,6 +84,7 @@ function App() {
           </button>
         </div>
       </div>
+      <NoiseDemo/>
     </div>
      
     </>
